@@ -404,7 +404,8 @@
 		</span>
 	</div>
 
-	<!-- Product Detail -->
+	<!-- detail -->
+
 	<div class="container bgwhite p-t-35 p-b-80">
 		<div class="flex-w flex-sb">
 			<div class="w-size13 p-t-30 respon5">
@@ -414,36 +415,52 @@
 					<div class="slick3">
 						
 						<?php
-	
-							$slqM = "SELECT * FROM p_loja.produtos , p_loja.img_produto WHERE id = '".$codP."'";
-							$queryM = mysqli_query($conexao, $slqM);
 
-							while ($dados = mysqli_fetch_row($queryM)) {
+							$sqlDatail = "SELECT * FROM img_produto WHERE id_produto = '".$codP."'";
+							$queryDetail = mysqli_query($conexao, $sqlDatail);
 
-								$novoView = $dados[7]+1;
-								$sqlView = "UPDATE produtos SET view = '".$novoView."' WHERE id = '".$codP."'";
-								mysqli_query($conexao, $sqlView);
+							while ($imagens = mysqli_fetch_assoc($queryDetail)) {
+								
+								echo '
 
-								echo "
-									<div class='item-slick3' data-thumb='admin/img/".$dados[9]."' style='width: 320px; height: 427px'>
-										<div class='wrap-pic-w'>
-											<img src='admin/img/".$dados[9]."' alt='IMG-PRODUCT'>
+									<div class="item-slick3" data-thumb="admin/img/'.$imagens['nome'].'">
+										<div class="wrap-pic-w">
+											<img src="admin/img/'.$imagens['nome'].'" alt="IMG-PRODUCT">
 										</div>
 									</div>
-								";
+
+								';
+
+							}
 
 						?>
-
+					
 					</div>
 				</div>
 			</div>
+
+			<?php
+
+				$sqlDatailProduct = "SELECT * FROM produtos WHERE id = '".$codP."'";
+				$queryDetailProduct = mysqli_query($conexao, $sqlDatailProduct);
+
+				while ($inform = mysqli_fetch_assoc($queryDetailProduct)) {
+
+				//Views
+
+				$view = $inform['view']+1;
+				$sqlView =  "UPDATE produtos SET view = '".$view."' WHERE id = '".$codP."'";
+				$updateView = mysqli_query($conexao, $sqlView);	
+
+			?>
+
 			<div class="w-size14 p-t-30 respon5">
 				<h4 class="product-detail-name m-text16 p-b-13">
-					<?php echo $dados[2]?>
+					<?php echo $inform['nome']?>
 				</h4>
 
 				<span class="m-text17">
-					$<?php echo $dados[3]?>
+					$<?php echo $inform['preco']?>
 				</span>
 
 				<p class="s-text8 p-t-10">
@@ -509,8 +526,8 @@
 				</div>
 
 				<div class="p-b-45">
-					<span class="s-text8 m-r-35">SKU: <?php echo $dados[0]?></span>
-					<span class="s-text8">Categories: <?php echo $dados[1]?></span>
+					<span class="s-text8 m-r-35">SKU: MUG-<?php echo $inform['id']?></span>
+					<span class="s-text8">Categories: Mug, <?php echo $inform['cat']?></span>
 				</div>
 
 				<!--  -->
@@ -523,7 +540,7 @@
 
 					<div class="dropdown-content dis-none p-t-15 p-b-23">
 						<p class="s-text8">
-							<?php echo $dados[5]?>
+							<?php echo $inform['descricao']?>
 						</p>
 					</div>
 				</div>
@@ -537,14 +554,14 @@
 
 					<div class="dropdown-content dis-none p-t-15 p-b-23">
 						<p class="s-text8">
-							<?php echo $dados[6]?>
+							<?php echo $inform['inform']?>
 						</p>
 					</div>
 				</div>
 
 				<div class="wrap-dropdown-content bo7 p-t-15 p-b-14">
 					<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
-						Reviews (<?php echo $dados[7]?>)
+						Reviews (<?php echo $inform['view']?>)
 						<i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
 						<i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
 					</h5>

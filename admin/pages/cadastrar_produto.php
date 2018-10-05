@@ -10,13 +10,25 @@
 	$desc = $_POST['desc'];
 	$inform = $_POST['inform'];
 
-	if (isset($nome) && isset($_FILES['arquivo'])) {
+	if (isset($nome) && isset($_FILES['arquivo']) && isset($_FILES['arquivo2']) && isset($_FILES['arquivo3'])) {
 
 		$dir = "img/";
 		$ext1 = strtolower(substr($_FILES['arquivo']['name'], -4));
-
+		//img -1
 		$novoNome1 = microtime().$ext1;
 		move_uploaded_file($_FILES['arquivo']['tmp_name'], $dir.$novoNome1);
+
+		//img -2
+		$ext2 = strtolower(substr($_FILES['arquivo2']['name'], -4));
+
+		$novoNome2 = md5(microtime()).$ext2;
+		move_uploaded_file($_FILES['arquivo2']['tmp_name'], $dir.$novoNome2);
+
+		//img -3
+		$ext3 = strtolower(substr($_FILES['arquivo3']['name'], -4));
+
+		$novoNome3 = base64_encode(microtime()).$ext3;
+		move_uploaded_file($_FILES['arquivo3']['tmp_name'], $dir.$novoNome3);
 
 		$sql = "INSERT INTO `produtos` VALUES (default,'".$cat."','".$nome."','".$preco."','".$quant."','".$desc."','".$inform."','0')";
 		$query = mysqli_query($conexao, $sql);
@@ -26,8 +38,17 @@
 		$valRow = mysqli_fetch_row($queryImg);
 		$salvaRow = $valRow[0];
 
+		//img -1
 		$sqlSalvaImg = "INSERT INTO `img_produto` VALUES ('".$salvaRow."','".$novoNome1."')";
 		mysqli_query($conexao, $sqlSalvaImg);
+
+		//img -2
+		$sqlSalvaImg2 = "INSERT INTO `img_produto` VALUES ('".$salvaRow."','".$novoNome2."')";
+		mysqli_query($conexao, $sqlSalvaImg2);
+
+		//img -3
+		$sqlSalvaImg2 = "INSERT INTO `img_produto` VALUES ('".$salvaRow."','".$novoNome3."')";
+		mysqli_query($conexao, $sqlSalvaImg2);
 		
 
 		if (mysqli_affected_rows($conexao)>0) {
@@ -83,6 +104,12 @@
 			<!-- imagens -->
 			<span>Imagem - 1</span><br>
 			<input class="form-control" type="file" name="arquivo" id="arquivo" required><br>
+
+			<span>Imagem - 2</span><br>
+			<input class="form-control" type="file" name="arquivo2" id="arquivo" required><br>
+
+			<span>Imagem - 3</span><br>
+			<input class="form-control" type="file" name="arquivo3" id="arquivo" required><br>
 			
 			<input class="form-control btn btn-primary" type="submit" value="Enviar"><br>
 

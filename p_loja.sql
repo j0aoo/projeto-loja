@@ -1,54 +1,52 @@
--- phpMyAdmin SQL Dump
--- version 4.7.7
--- https://www.phpmyadmin.net/
+CREATE DATABASE  IF NOT EXISTS `p_loja` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `p_loja`;
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost
--- Tempo de geração: 25/09/2018 às 16:18
--- Versão do servidor: 10.1.30-MariaDB
--- Versão do PHP: 7.2.1
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: 127.0.0.1    Database: p_loja
+-- ------------------------------------------------------
+-- Server version	5.5.5-10.1.30-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Banco de dados: `p_loja`
+-- Table structure for table `categoria`
 --
 
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `categoria`
---
-
+DROP TABLE IF EXISTS `categoria`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categoria` (
   `id` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Fazendo dump de dados para tabela `categoria`
+-- Dumping data for table `categoria`
 --
 
-INSERT INTO `categoria` (`id`, `nome`) VALUES
-(0, 'Masc'),
-(0, 'Fem'),
-(0, 'Esporte'),
-(0, 'Infantil');
-
--- --------------------------------------------------------
+LOCK TABLES `categoria` WRITE;
+/*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
+INSERT INTO `categoria` VALUES (0,'feminino'),(0,'Masculino');
+/*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura para tabela `contato`
+-- Table structure for table `contato`
 --
 
+DROP TABLE IF EXISTS `contato`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contato` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
@@ -57,69 +55,97 @@ CREATE TABLE `contato` (
   `email` varchar(100) NOT NULL,
   `msg` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura para tabela `img_produto`
+-- Dumping data for table `contato`
 --
 
+LOCK TABLES `contato` WRITE;
+/*!40000 ALTER TABLE `contato` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contato` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `img_produto`
+--
+
+DROP TABLE IF EXISTS `img_produto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `img_produto` (
   `id_produto` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Fazendo dump de dados para tabela `img_produto`
+-- Dumping data for table `img_produto`
 --
 
-INSERT INTO `img_produto` (`id_produto`, `nome`) VALUES
-(4, '0.35576700 1537884597.jpg'),
-(5, '0.78233400 1537884809.jpg');
-
--- --------------------------------------------------------
+LOCK TABLES `img_produto` WRITE;
+/*!40000 ALTER TABLE `img_produto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `img_produto` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura para tabela `notificacao`
+-- Table structure for table `notificacao`
 --
 
+DROP TABLE IF EXISTS `notificacao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `notificacao` (
   `id_contato` int(11) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura para tabela `produtos`
+-- Dumping data for table `notificacao`
 --
 
+LOCK TABLES `notificacao` WRITE;
+/*!40000 ALTER TABLE `notificacao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notificacao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `produtos`
+--
+
+DROP TABLE IF EXISTS `produtos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `produtos` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `cat` varchar(50) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `preco` int(11) NOT NULL,
   `quantidade` int(11) NOT NULL,
   `descricao` text NOT NULL,
   `inform` text NOT NULL,
-  `view` int(11) NOT NULL
+  `view` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Fazendo dump de dados para tabela `produtos`
+-- Dumping data for table `produtos`
 --
 
-INSERT INTO `produtos` (`id`, `cat`, `nome`, `preco`, `quantidade`, `descricao`, `inform`, `view`) VALUES
-(3, 'Masc', 'Camisa', 20, 100, 'Ã“timo tecido!', 'Muito bom para usar no trabalho...', 4),
-(4, 'Masc', 'Polo', 15, 1, 'OFJbdnxb', 'olbnfgÃ§bdgnb', 1),
-(5, 'Masc', 'Camisa', 25, 10, 'oidgn', 'ofbnlkb', 0);
-
--- --------------------------------------------------------
+LOCK TABLES `produtos` WRITE;
+/*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura para tabela `users_admin`
+-- Table structure for table `users_admin`
 --
 
+DROP TABLE IF EXISTS `users_admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users_admin` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
@@ -129,20 +155,25 @@ CREATE TABLE `users_admin` (
   `url_img` varchar(36) NOT NULL,
   `nivel` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Fazendo dump de dados para tabela `users_admin`
+-- Dumping data for table `users_admin`
 --
 
-INSERT INTO `users_admin` (`id`, `nome`, `usuario`, `senha`, `email`, `url_img`, `nivel`) VALUES
-(1, 'João Carlos', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'dk.joao12@gmail.com', 'perfil.png', '0');
-
--- --------------------------------------------------------
+LOCK TABLES `users_admin` WRITE;
+/*!40000 ALTER TABLE `users_admin` DISABLE KEYS */;
+INSERT INTO `users_admin` VALUES (1,'João Carlos','admin','21232f297a57a5a743894a0e4a801fc3','dk.joao12@gmail.com','perfil.png','0');
+/*!40000 ALTER TABLE `users_admin` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura para tabela `usuarios`
+-- Table structure for table `usuarios`
 --
 
+DROP TABLE IF EXISTS `usuarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
@@ -151,28 +182,28 @@ CREATE TABLE `usuarios` (
   `email` varchar(100) NOT NULL,
   `url_img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Índices de tabelas apagadas
+-- Dumping data for table `usuarios`
 --
 
---
--- Índices de tabela `produtos`
---
-ALTER TABLE `produtos`
-  ADD PRIMARY KEY (`id`);
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- AUTO_INCREMENT de tabelas apagadas
+-- Dumping routines for database 'p_loja'
 --
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- AUTO_INCREMENT de tabela `produtos`
---
-ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-COMMIT;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-09-22 22:46:38
