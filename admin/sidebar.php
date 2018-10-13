@@ -22,7 +22,7 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="?page=cadastrar_produto"><i class="fa fa-plus"></i> Cadastrar </a></li>
-          <li><a href="#"><i class="fa fa-search"></i> Consultar </a></li>
+          <li><a href="?page=consulta_produto"><i class="fa fa-search"></i> Consultar </a></li>
         </ul>
       </li>
       <li>

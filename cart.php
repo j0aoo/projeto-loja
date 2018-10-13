@@ -6,34 +6,26 @@
 ?>
 <?php 
 
-	//carrinho
 	if (!isset($_SESSION['carrinho'])) {
-
+	
 		$_SESSION['carrinho']= array();
-
+	
 	}
-
-	if (isset($_GET['userExit'])) {
-		
-		unset($_SESSION['userLog']);
-		echo "<script> location.href='index.php' </script>";
-
-	}
-
+	
 	if (isset($_GET['acao'])) {
-
+		
 		$id = $_GET['id'];
-
+	
 		if ($_GET['acao'] == "add") {
-
+	
 		if (!isset($_SESSION['carrinho'][$_GET['id']])) {
-
+	
 				$_SESSION['carrinho'][$id] = 1;	
-
-			} else {
-
+	
+			}else{
+	
 				$_SESSION['carrinho'][$id] += 1;
-			
+	
 			}
 			
 		}
@@ -44,7 +36,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Product</title>
+	<title>Cart</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -69,8 +61,6 @@
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/noui/nouislider.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -120,24 +110,24 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.php">Home</a>
+								<a href="index.html">Home</a>
 								<ul class="sub_menu">
-									<li><a href="index.php">Homepage V1</a></li>
+									<li><a href="index.html">Homepage V1</a></li>
 									<li><a href="home-02.html">Homepage V2</a></li>
 									<li><a href="home-03.html">Homepage V3</a></li>
 								</ul>
 							</li>
 
 							<li>
-								<a href="product.php">Shop</a>
+								<a href="product.html">Shop</a>
 							</li>
 
 							<li class="sale-noti">
-								<a href="product.php">Sale</a>
+								<a href="product.html">Sale</a>
 							</li>
 
 							<li>
-								<a href="cart.php">Features</a>
+								<a href="cart.html">Features</a>
 							</li>
 
 							<li>
@@ -149,7 +139,7 @@
 							</li>
 
 							<li>
-								<a href="contact.php">Contact</a>
+								<a href="contact.html">Contact</a>
 							</li>
 						</ul>
 					</nav>
@@ -158,38 +148,7 @@
 				<!-- Header Icon -->
 				<div class="header-icons">
 					<a href="#" class="header-wrapicon1 dis-block">
-						<?php
-
-							if (isset($_SESSION['userLog'])) {
-								
-								echo '
-
-									<ul class="nav nav-tabs" style="margin-top: -20%">
-									  	<li class="nav-item dropdown">
-									    	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON"></a>
-									    <div class="dropdown-menu">
-									      
-									      	<a class="dropdown-item" href="minhaConta.php?user='.$_SESSION['userLog'].'">Minha conta</a>
-									      	<a class="dropdown-item" href="minhaConta.php?userExit=0">Sair</a>
-																    
-									    </div>  
-									  	</li>
-									</ul>
-
-								';
-
-							} else {
-
-								echo '
-
-									<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-
-								';
-
-							}
-
-						?>
-
+						<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
 					</a>
 
 					<span class="linedivide1"></span>
@@ -201,6 +160,7 @@
 						<!-- Header cart noti -->
 						<div class="header-cart header-dropdown">
 							<ul class="header-cart-wrapitem">
+								
 								<?php 
 									
 									//carrinho
@@ -256,7 +216,7 @@
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 										View Cart
 									</a>
 								</div>
@@ -268,7 +228,6 @@
 									</a>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -425,11 +384,11 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.php">Shop</a>
+						<a href="product.html">Shop</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.php">Sale</a>
+						<a href="product.html">Sale</a>
 					</li>
 
 					<li class="item-menu-mobile">
@@ -445,7 +404,7 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="contact.php">Contact</a>
+						<a href="contact.html">Contact</a>
 					</li>
 				</ul>
 			</nav>
@@ -453,349 +412,180 @@
 	</header>
 
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(image/Moda5.jpg);">
+	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-01.jpg);">
 		<h2 class="l-text2 t-center">
-			Women
+			Cart
 		</h2>
-		<p class="m-text13 t-center">
-			New Arrivals Women Collection 2018
-		</p>
 	</section>
 
-
-	<!-- Content page -->
-	<section class="bgwhite p-t-55 p-b-65">
+	<!-- Cart -->
+	<section class="cart bgwhite p-t-70 p-b-100">
 		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
-					<div class="leftbar p-r-20 p-r-0-sm">
-						<!--  -->
-						<h4 class="m-text14 p-b-7">
-							Categories
-						</h4>
+			<!-- Cart item -->
+			<div class="container-table-cart pos-relative">
+				<div class="wrap-table-shopping-cart bgwhite">
+					
+					<table class="table-shopping-cart">
+						<tr class="table-head">
+							<th class="column-1"></th>
+							<th class="column-2">Product</th>
+							<th class="column-3">Price</th>
+							<th class="column-4 p-l-70">Quantity</th>
+							<th class="column-5">Total</th>
+						</tr>
 
-						<ul class="p-b-54">
+						<?php
+  							
+							$total = 0;
 							
-							<li class='p-b-9'>
-								<a href='?filtroCat=todos' class='s-text7'>Todos</a>
-							</li>
+							foreach ($_SESSION['carrinho'] as $id => $qnt) {
+							
+								$sqlSelectProd = "SELECT * FROM produtos WHERE produtos.id = '".$id."'";
+								$querySelectProd = mysqli_query($conexao, $sqlSelectProd);
 
-							<?php
+								$sqlSelectProdImg = "SELECT * FROM img_produto WHERE id_produto = '".$id."'";
+								$querySelectProdImg = mysqli_query($conexao, $sqlSelectProdImg);
+								
+								$product = mysqli_fetch_assoc($querySelectProd);
+								$imgProductTable = mysqli_fetch_assoc($querySelectProdImg);
 
-								$sql = "SELECT * FROM categoria"; 
-								$query = mysqli_query($conexao, $sql);
+							    $tot = $product['preco'] * $qnt;
+						
+									echo '
+										
+										<tr class="table-row">
+											<td class="column-1">
+												<div class="cart-img-product b-rad-4 o-f-hidden">
+													<img src="admin/img/'.$imgProductTable['nome'].'"alt="IMG-PRODUCT">
+												</div>
+											</td>
+											<td class="column-2">'.$product['nome'].'</td>
+											<td class="column-3">$'.$product['preco'].'</td>
+											<td class="column-4">
+												<div class="flex-w bo5 of-hidden w-size17">
+													<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
+														<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
+													</button>
+													<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="'.$qnt.'">
+													<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
+														<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
+													</button>
+												</div>
+											</td>
+											<td class="column-5">$'.$tot.'</td>
+										</tr>
+								
+								';
+						
+							}
 
-								while ($reg = mysqli_fetch_assoc($query)) {
-									
-									echo "
-										<li class='p-b-9'>
-											<a href='?filtroCat=".$reg['nome']."' class='s-text7'>
-												".$reg['nome']."
-											</a>
-										</li>
-									";
+						?>
+						
+					</table>
+				</div>
+			</div>
 
-								}
+			<div class="flex-w flex-sb-m p-t-25 p-b-25 bo8 p-l-35 p-r-60 p-lr-15-sm">
+				<div class="flex-w flex-m w-full-sm">
+					<div class="size11 bo4 m-r-10">
+						<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="coupon-code" placeholder="Coupon Code">
+					</div>
 
-							?>
-						</ul>
+					<div class="size12 trans-0-4 m-t-10 m-b-10 m-r-10">
+						<!-- Button -->
+						<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+							Apply coupon
+						</button>
+					</div>
+				</div>
 
-						<!--  -->
-						<h4 class="m-text14 p-b-32">
-							Filters
-						</h4>
+				<div class="size10 trans-0-4 m-t-10 m-b-10">
+					<!-- Button -->
+					<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+						Update Cart
+					</button>
+				</div>
+			</div>
 
-						<div class="filter-price p-t-22 p-b-50 bo3">
-							<div class="m-text15 p-b-17">
-								Price
-							</div>
+			<!-- Total -->
+			<div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
+				<h5 class="m-text20 p-b-24">
+					Cart Totals
+				</h5>
 
-							<div class="wra-filter-bar">
-								<div id="filter-bar"></div>
-							</div>
+				<!--  -->
+				<div class="flex-w flex-sb-m p-b-12">
+					<span class="s-text18 w-size19 w-full-sm">
+						Subtotal:
+					</span>
 
-							<div class="flex-sb-m flex-w p-t-16">
-								<div class="w-size11">
-									<!-- Button -->
-									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
-										Filter
-									</button>
-								</div>
+					<span class="m-text21 w-size20 w-full-sm">
+						$39.00
+					</span>
+				</div>
 
-								<div class="s-text3 p-t-10 p-b-10">
-									Range: $<span id="value-lower">610</span> - $<span id="value-upper">980</span>
-								</div>
-							</div>
+				<!--  -->
+				<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
+					<span class="s-text18 w-size19 w-full-sm">
+						Shipping:
+					</span>
+
+					<div class="w-size20 w-full-sm">
+						<p class="s-text8 p-b-23">
+							There are no shipping methods available. Please double check your address, or contact us if you need any help.
+						</p>
+
+						<span class="s-text19">
+							Calculate Shipping
+						</span>
+
+						<div class="rs2-select2 rs3-select2 rs4-select2 bo4 of-hidden w-size21 m-t-8 m-b-12">
+							<select class="selection-2" name="country">
+								<option>Select a country...</option>
+								<option>US</option>
+								<option>UK</option>
+								<option>Japan</option>
+							</select>
 						</div>
 
-						<div class="filter-color p-t-22 p-b-50 bo3">
-							<div class="m-text15 p-b-12">
-								Color
-							</div>
-
-							<ul class="flex-w">
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter1" type="checkbox" name="color-filter1">
-									<label class="color-filter color-filter1" for="color-filter1"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter2" type="checkbox" name="color-filter2">
-									<label class="color-filter color-filter2" for="color-filter2"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter3" type="checkbox" name="color-filter3">
-									<label class="color-filter color-filter3" for="color-filter3"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter4" type="checkbox" name="color-filter4">
-									<label class="color-filter color-filter4" for="color-filter4"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter5" type="checkbox" name="color-filter5">
-									<label class="color-filter color-filter5" for="color-filter5"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter6" type="checkbox" name="color-filter6">
-									<label class="color-filter color-filter6" for="color-filter6"></label>
-								</li>
-
-								<li class="m-r-10">
-									<input class="checkbox-color-filter" id="color-filter7" type="checkbox" name="color-filter7">
-									<label class="color-filter color-filter7" for="color-filter7"></label>
-								</li>
-							</ul>
+						<div class="size13 bo4 m-b-12">
+						<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="state" placeholder="State /  country">
 						</div>
 
-						<div class="search-product pos-relative bo4 of-hidden">
-							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products...">
+						<div class="size13 bo4 m-b-22">
+							<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="postcode" placeholder="Postcode / Zip">
+						</div>
 
-							<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
-								<i class="fs-12 fa fa-search" aria-hidden="true"></i>
+						<div class="size14 trans-0-4 m-b-10">
+							<!-- Button -->
+							<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+								Update Totals
 							</button>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
-					<!--  -->
-					<div class="flex-sb-m flex-w p-b-35">
-						<div class="flex-w">
+				<!--  -->
+				<div class="flex-w flex-sb-m p-t-26 p-b-30">
+					<span class="m-text22 w-size19 w-full-sm">
+						Total:
+					</span>
 
-							<ul class="nav nav-tabs">
-							  	<li class="nav-item dropdown">
-							    	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Default Sorting</a>
-							    <div class="dropdown-menu">
-							      
-							      	<a class="dropdown-item" href="?filtroSorting=0">Todos</a>
-							        <a class="dropdown-item" href="?filtroSorting=1">Popularity</a>
-							        <a class="dropdown-item" href="?filtroSorting=2">Price: low to high</a>
-							        <a class="dropdown-item" href="?filtroSorting=3">Price: high to low</a>
-							    
-							    </div>  
-							  	</li>
-							</ul>
+					<span class="m-text21 w-size20 w-full-sm">
+						$39.00
+					</span>
+				</div>
 
-							<ul class="nav nav-tabs">
-							  	<li class="nav-item dropdown">
-							    	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Price</a>
-							    <div class="dropdown-menu">
-							      
-							      	<a class="dropdown-item" href="?filtroPreco=0">Todos</a>
-							        <a class="dropdown-item" href="?filtroPreco=1">$0.00 - $50.00</a>
-							        <a class="dropdown-item" href="?filtroPreco=2">$50.00 - $100.00</a>
-							        <a class="dropdown-item" href="?filtroPreco=3">$100.00 - $200.00</a>
-							        <a class="dropdown-item" href="?filtroPreco=4">$200.00+</a>
-							    
-							    </div>  
-							  	</li>
-							</ul>
-						</div>
-
-						<span class="s-text8 p-t-5 p-b-5">
-							Showing 1–12 of 16 results
-						</span>
-					</div>
-
-					<!-- Product -->
-					<div class="row">						
-
-							<?php
-
-								//Paginação
-								$pagina = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
-								$limite = 6;
-								
-								$sqlT = "SELECT * FROM produtos";
-								$queryT= mysqli_query($conexao, $sqlT);
-								$total = mysqli_num_rows($queryT);
-								
-								$numPagina = ceil($total/$limite);
-								$inicio = $pagina - 1;
-								
-								$inicio = ($inicio*$numPagina);
-
-								//product
-								$limit = mysqli_query($conexao, "SELECT * FROM produtos");
-								$line = mysqli_num_rows($limit);
-
-								$sqlSelecionaProd = "";
-
-								if (isset($_GET['filtroPreco'])) {
-									$filtroPreco = (int) $_GET['filtroPreco'];
-
-									if ($filtroPreco == 1) {
-									
-										$sqlSelecionaProd = "SELECT * FROM p_loja.produtos WHERE preco > 0 AND preco <= 50 LIMIT $line";
-									
-									}
-
-									if ($filtroPreco == 2) {
-										
-										$sqlSelecionaProd = "SELECT * FROM p_loja.produtos WHERE preco > 50 AND preco <= 100 LIMIT $line";
-
-									}
-								
-									if ($filtroPreco == 3) {
-										
-										$sqlSelecionaProd = "SELECT * FROM p_loja.produtos WHERE preco > 100 AND preco <= 200 LIMIT $line";
-
-									}
-
-									if ($filtroPreco == 4) {
-										
-										$sqlSelecionaProd = "SELECT * FROM p_loja.produtos WHERE preco > 200 LIMIT $line";
-
-									}
-
-									if ($filtroPreco == 0) {
-
-										$sqlSelecionaProd = "SELECT * FROM p_loja.produtos LIMIT $inicio, $limite";
-									
-									}
-
-								} else if (isset($_GET['filtroSorting'])) {
-									
-									$filtroSorting = (int) $_GET['filtroSorting'];
-
-									if ($filtroSorting == 1) {
-
-										$sqlPopularity = "SELECT AVG(view) FROM p_loja.produtos LIMIT $line";
-										$queryPopularity = mysqli_query($conexao, $sqlPopularity);
-
-										$val = mysqli_fetch_row($queryPopularity);
-										$media = $val[0];
-										
-										$sqlSelecionaProd = "SELECT * FROM p_loja.produtos WHERE view > $media LIMIT $line";
-									
-									}
-
-									if ($filtroSorting == 2) {
-										
-										$sqlSelecionaProd = "SELECT * FROM p_loja.produtos ORDER BY preco ASC LIMIT $line";
-
-									}
-
-									if ($filtroSorting == 3) {
-										
-										$sqlSelecionaProd = "SELECT * FROM p_loja.produtos ORDER BY preco DESC LIMIT $line";
-
-									}
-
-									if ($filtroSorting == 0) {
-										
-										$sqlSelecionaProd = "SELECT * FROM p_loja.produtos LIMIT $inicio, $limite";
-
-									}
-
-								} else if (isset($_GET['filtroCat'])) {
-									
-									$filtroCat = (string) $_GET['filtroCat'];
-									if ($filtroCat == "todos") {
-										
-										$sqlSelecionaProd = "SELECT * FROM p_loja.produtos LIMIT $inicio, $limite";
-
-									}
-									
-									if ($filtroCat != "todos") {
-										
-										$sqlSelecionaProd = "SELECT * FROM p_loja.produtos WHERE cat = '".$filtroCat."' LIMIT $line";
-
-									}
-
-								} else {
-
-									$sqlSelecionaProd = "SELECT * FROM p_loja.produtos LIMIT $inicio, $limite";
-
-								}
-
-								
-								$querySelecionaProd = mysqli_query($conexao, $sqlSelecionaProd);
-								while ($produtos = mysqli_fetch_row($querySelecionaProd)) {
-
-								$queryImg = mysqli_query($conexao, "SELECT * FROM img_produto WHERE id_produto = '".$produtos[0]."'");
-								$img = mysqli_fetch_assoc($queryImg);
-
-									
-									echo '
-									<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-									<!-- Block2 -->
-										<div class="block2">
-											<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-												<img src="admin/img/'.$img['nome'].'" alt="IMG-PRODUCT" style="width:250px;height:340px">
-
-												<div class="block2-overlay trans-0-4">
-													<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-														<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-														<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-													</a>
-
-													<div class="block2-btn-addcart w-size1 trans-0-4">
-														<!-- Button -->
-														<a href="?acao=add&id='.$produtos[0].'" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-															Add to Cart
-														</a>
-													</div>
-												</div>
-											</div>
-											<div class="block2-txt p-t-20">
-												<a href="product-detail.php?codP='.$produtos[0].'" class="block2-name dis-block s-text3 p-b-5">
-													'.$produtos[2].'
-												</a>
-
-												<span class="block2-price m-text6 p-r-5">
-													$'.$produtos[3].'
-												</span>
-											</div>
-										</div>
-									</div>
-								
-								';
-
-								}
-
-							?>
-					</div>
-					<!-- Pagination -->
-					<div class="pagination flex-m flex-w p-t-26">
-					<?php 
-						for ($i=1; $i <= $numPagina ; $i++) {
-							if (isset($_GET['pagina']) == $i) { 
-								echo '<a href="?pagina='.$i.'" class="item-pagination flex-c-m trans-0-4 active-pagination">'.$i.'</a>';
-							} else {
-								echo '<a href="?pagina='.$i.'" class="item-pagination flex-c-m trans-0-4">'.$i.'</a>';
-							}
-						}
-					?>
-					</div>
+				<div class="size15 trans-0-4">
+					<!-- Button -->
+					<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+						Proceed to Checkout
+					</button>
 				</div>
 			</div>
 		</div>
 	</section>
+
 
 
 	<!-- Footer -->
@@ -1000,55 +790,6 @@
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect2')
 		});
-	</script>
-<!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/daterangepicker/moment.min.js"></script>
-	<script type="text/javascript" src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/slick/slick.min.js"></script>
-	<script type="text/javascript" src="js/slick-custom.js"></script>
-<!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
-	<script type="text/javascript">
-		$('.block2-btn-addcart').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
-
-		$('.block2-btn-addwishlist').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-			});
-		});
-	</script>
-
-<!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/noui/nouislider.min.js"></script>
-	<script type="text/javascript">
-		/*[ No ui ]
-	    ===========================================================*/
-	    var filterBar = document.getElementById('filter-bar');
-
-	    noUiSlider.create(filterBar, {
-	        start: [ 50, 200 ],
-	        connect: true,
-	        range: {
-	            'min': 50,
-	            'max': 200
-	        }
-	    });
-
-	    var skipValues = [
-	    document.getElementById('value-lower'),
-	    document.getElementById('value-upper')
-	    ];
-
-	    filterBar.noUiSlider.on('update', function( values, handle ) {
-	        skipValues[handle].innerHTML = Math.round(values[handle]) ;
-	    });
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>

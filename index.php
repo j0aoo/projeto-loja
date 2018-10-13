@@ -1,3 +1,25 @@
+<?php
+
+	include("admin/config.php");
+	session_start();
+	
+	if (isset($_SESSION['userLog'])) {
+		
+		$sqlInformUser = "SELECT * FROM userComum WHERE user = '".$_SESSION['userLog']."'"; 
+		$queryInformUser = mysqli_query($conexao, $sqlInformUser);
+
+		$informUser = mysqli_fetch_assoc($queryInformUser);
+
+	}
+
+	if (isset($_GET['userExit'])) {
+		
+		unset($_SESSION['userLog']);
+		echo "<script> location.href='index.php' </script>";
+
+	}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,7 +98,7 @@
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="product.php">Shop</a>
 							</li>
 
 							<li class="sale-noti">
@@ -84,7 +106,7 @@
 							</li>
 
 							<li>
-								<a href="cart.html">Features</a>
+								<a href="cart.php">Features</a>
 							</li>
 
 							<li>
@@ -96,7 +118,7 @@
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="contact.php">Contact</a>
 							</li>
 						</ul>
 					</nav>
@@ -105,7 +127,39 @@
 				<!-- Header Icon -->
 				<div class="header-icons">
 					<a href="#" class="header-wrapicon1 dis-block">
-						<img src="image/<?php echo $img_perfil ?>" class="header-icon1" alt="ICON">
+						
+						<?php
+
+							if (isset($_SESSION['userLog'])) {
+								
+								echo '
+
+									<ul class="nav nav-tabs" style="margin-top: -20%">
+									  	<li class="nav-item dropdown">
+									    	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON"></a>
+									    <div class="dropdown-menu">
+									      
+									      	<a class="dropdown-item" href="minhaConta.php?user='.$_SESSION['userLog'].'">Minha conta</a>
+									      	<a class="dropdown-item" href="minhaConta.php?userExit=0">Sair</a>
+																    
+									    </div>  
+									  	</li>
+									</ul>
+
+								';
+
+							} else {
+
+								echo '
+
+									<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+
+								';
+
+							}
+
+						?>
+
 					</a>
 
 					<span class="linedivide1"></span>
@@ -504,8 +558,8 @@
 
 							<div class="w-size2 p-t-25">
 								<!-- Button -->
-								<a href="#" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
-									Sign Up
+								<a href="cadUsers.php" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
+									Cadastrar-se
 								</a>
 							</div>
 						</div>
